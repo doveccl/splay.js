@@ -1,0 +1,21 @@
+{
+  "name": "splay.js",
+  "version": "1.0.0",
+  "description": "A JavaScript implementation of splay tree",
+  "main": "index.js",
+  "repository": "git@github.com:doveccl/splay.js.git",
+  "author": "Doveccl <doveccl@live.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "ts-node test.ts"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.109",
+    "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "@types/node": "^10.3.0",
+    "ts-node": "^6.1.0",
+    "typescript": "^2.9.1"
+  }
+}
