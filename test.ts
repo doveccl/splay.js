@@ -1,17 +1,34 @@
 import Splay from './splay'
 import { equal } from 'assert'
 
-let s = new Splay<number>()
+let splay = new Splay<number>()
+let set = new Set<number>()
 
-s.dump()
-for (let i = 0; i < 12; i += 2) {
-  s.insert(i)
-  s.dump()
-}
+const count = 1000000;
+const rand = () => Math.random() * Number.MAX_SAFE_INTEGER
 
-for (let i = 0; i < 12; i++) {
-  let res = s.search(i)
-  console.log('search', i, res)
-  equal(res, i % 2 === 0)
-  s.dump()
-}
+console.time(`splay insert ${count} numbers`)
+for (let i = 0; i < count; i++) { splay.insert(rand()) }
+console.timeEnd(`splay insert ${count} numbers`)
+
+console.time(`splay search ${count} numbers`)
+for (let i = 0; i < count; i++) { splay.search(rand()) }
+console.timeEnd(`splay search ${count} numbers`)
+
+console.time(`set insert ${count} numbers`)
+for (let i = 0; i < count; i++) { set.add(rand()) }
+console.timeEnd(`set insert ${count} numbers`)
+
+console.time(`set search ${count} numbers`)
+for (let i = 0; i < count; i++) { set.has(rand()) }
+console.timeEnd(`set search ${count} numbers`)
+
+console.log('dump splay')
+splay.forEach((val: number) => {
+  console.log(val)
+})
+
+console.log('dump set')
+set.forEach((val: number) => {
+  console.log(val)
+})

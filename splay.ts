@@ -40,6 +40,11 @@ class node<T> {
 			(this.right = father).father = this
 		}
 	}
+	public dfs(callback: { (item: T): void }) {
+		if (this.left) { this.left.dfs(callback) }
+		callback(cloneDeep(this.value))
+		if (this.right) { this.right.dfs(callback) }
+	}
 }
 
 class tree<T> {
@@ -50,16 +55,13 @@ class tree<T> {
 		if (values) { for (let item of values) { this.insert(item) } }
 	}
 	private splay(t: node<T>) {
-		while (t.father) {
+		while (t.father !== null) {
 			if (t.father.father === null) {
-				console.log('单旋')
 				t.rotate()
 			} else if (t.witchChild() === t.father.witchChild()) {
-				console.log('双旋')
 				t.father.rotate()
 				t.rotate()
 			} else {
-				console.log('两个单旋')
 				t.rotate()
 				t.rotate()
 			}
@@ -105,6 +107,9 @@ class tree<T> {
 			this.splay(n)
 		}
 		return true
+	}
+	public forEach(callback: { (item: T): void }) {
+		this.root.dfs(callback)
 	}
 	public dump() { console.log('dump tree:', this.root) }
 }

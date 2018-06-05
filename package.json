@@ -7,13 +7,14 @@
   "author": "Doveccl <doveccl@live.com>",
   "license": "MIT",
   "scripts": {
-    "test": "ts-node test.ts"
+    "test": "ts-node test.ts > test.log"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.109",
     "lodash": "^4.17.10"
   },
   "devDependencies": {
+    "@types/es6-shim": "^0.31.37",
+    "@types/lodash": "^4.14.109",
     "@types/node": "^10.3.0",
     "ts-node": "^6.1.0",
     "typescript": "^2.9.1"
